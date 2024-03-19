@@ -38,7 +38,6 @@ def adicionarCarrinho():
             produto_no_carrinho = {'Nome': produto_selecionado['Nome'], 'Preço': produto_selecionado['Preço'], 'Quantidade': addQuantidade}
             carrinho.append(produto_no_carrinho)
             print('Produto adicionado ao carrinho.\n')
-            # Atualizar a quantidade do produto na lista de produtos
             produtos[addProdutoCarrinho - 1]['Quantidade'] -= addQuantidade
         else:
             print('Quantidade indisponível do produto.\n')
@@ -46,7 +45,7 @@ def adicionarCarrinho():
         print('ID de produto inválido.\n')
     
 def produtosCarrinho():
-    print('\nProdutos no carrinho\n')
+    print('\nProdutos no carrinho:\n')
     for produto in carrinho:
         print(f"Nome: {produto['Nome']}, Preço: R${produto['Preço']:.2f}, Quantidade: {produto['Quantidade']}\n")
         
@@ -54,17 +53,17 @@ def finalizarCompra():
     if not carrinho:
         print('Carrinho vazio. Não é possível finalizar a compra.\n')
         return
-    print('\nProdutos no carrinho\n')
+    print('\nProdutos no carrinho:\n')
     for produto in carrinho:
-        print(f"Nome: {produto['Nome']}, Preço: R${produto['Preço']:.2f}, Quantidade: {produto['Quantidade']}\n")
+        print(f"{produto['Nome']}, Preço: R${produto['Preço']:.2f}, Quantidade: {produto['Quantidade']}\n")
         total = sum(produto['Preço'] * produto['Quantidade'] for produto in carrinho)
         print(f'Total a pagar: R${total:.2f}')
-    finalizar = input('\nDeseja finalizar a compra? (S/N)\n')
-    if finalizar == 'S' or 's':
+    finalizar = input('Deseja finalizar a compra? Digite Sim ou Não.\n')
+    if finalizar == 'S' or 's' or 'Sim' or 'sim':
         print(f'\nTotal da compra: R${total:.2f}')
         carrinho.clear()
         print('Compra finalizada com sucesso!\n')
-    elif finalizar == 'N' or 'n':
+    elif finalizar == 'N' or 'n' or 'nao' or 'não' or 'Não' or 'Nao':
         print('Voltando ao menu...\n')
     else:
         print('Opção inválida.\n')
